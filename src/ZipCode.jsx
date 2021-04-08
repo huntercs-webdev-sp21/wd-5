@@ -14,7 +14,7 @@ class ZipCode extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    axios.get(`https://ctp-zip-api.herokuapp.com/zip/${this.state.zip}`)
+    axios.get(`https://ctp-zip-api.herokuapp.com/zisp/${this.state.zip}`)
       .then(response => {
         const newData = response.data;
         this.setState({data: newData});
