@@ -3,15 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import ZipCode from './ZipCode';
 import CitySearch from './CitySearch';
+import Links from './Links';
 import reportWebVitals from './reportWebVitals';
-import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom';
+import { Route, BrowserRouter, Switch } from 'react-router-dom';
 
 const router = (
   <BrowserRouter basename="/wd-5">
     <Switch>
       <Route exact path="/zipsearch" component={ZipCode} />
       <Route exact path="/citysearch" component={CitySearch} />
-      <Route path="/*" component={() => <Redirect to="/zipsearch" />} />
+      <Route path="/" component={Links} />
     </Switch>
   </BrowserRouter>
 )
