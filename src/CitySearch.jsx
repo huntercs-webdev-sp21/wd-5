@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import ZipCard from './ZipCard.jsx';
-
-class ZipCode extends Component {
+class CitySearch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      zip: '',
+      city: '',
       data: [],
     };
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    axios.get(`https://ctp-zip-api.herokuapp.com/zip/${this.state.zip}`)
+    axios.get(`https://ctp-zip-api.herokuapp.com/city/${this.state.city.toUpperCase()}`)
       .then(response => {
         const newData = response.data;
         this.setState({ data: newData });
@@ -26,18 +24,17 @@ class ZipCode extends Component {
   }
 
   handleChange = (event) => {
-    this.setState({ zip: event.target.value });
+    this.setState({ city: event.target.value });
   }
-
 
   render() {
     return (
       <div className="centered">
         <form onSubmit={this.handleSubmit}>
-          Enter a Zip Code
+          Enter a City name
           <br />
           <input
-            type="text" name="zip"
+            type="text" name="city"
             onChange={this.handleChange} />
           <input type="submit" value="Submit" />
 
@@ -45,19 +42,12 @@ class ZipCode extends Component {
         <div className="container">
           {this.state.data.length == 0
             ? "No Results"
-            : this.state.data.map(data =>
-              <div key={data.RecordNumber} className="card">
-                <ZipCard city={data.City} state={data.State}
-                  latitude={data.Lat} longitude={data.Long}
-                  population={data.EstimatedPopulation} wages={data.TotalWages} />
-              </div>)
+            : this.state.data.map(zip => <div className="card">{zip}</div>)
           }
         </div>
-
       </div>
     );
   }
 };
 
-
-export default ZipCode;
+export default CitySearch;
