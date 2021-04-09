@@ -19,7 +19,7 @@ class CitySearch extends Component {
       })
       .catch(err => {
         console.log(err);
-        this.setState({ data: [] });
+        this.setState({ data: ['No results found'] });
       });
   }
 
@@ -41,7 +41,7 @@ class CitySearch extends Component {
         </form>
         <div className="container">
           {this.state.data.length == 0
-            ? "No Results"
+            ? "Search above"
             : this.state.data.map(zip => <div className="card">{zip}</div>)
           }
         </div>
