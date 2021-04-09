@@ -32,7 +32,7 @@ class ZipCode extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <form onSubmit={this.handleSubmit}>
           Enter a Zip Code
           <br/>
